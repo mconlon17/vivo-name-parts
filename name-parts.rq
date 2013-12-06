@@ -1,1 +1,9 @@
-name-parts.rq
+# Find all the UF people in VIVO who have a display name, but do 
+# not have a last name
+SELECT ?uri ?display_name
+WHERE {
+  ?uri a ufVivo:UFEntity .
+  ?uri a foaf:Person .
+  ?uri rdfs:label ?display_name .
+  FILTER NOT EXISTS {?uri foaf:lastName ?last_name . }
+}
